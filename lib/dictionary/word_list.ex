@@ -1,10 +1,12 @@
 defmodule Dictionary.WordList do
+  @name __MODULE__
+
   def start_link() do
-    Agent.start_link(&word_list/0, name: :wl)
+    Agent.start_link(&word_list/0, name: @name)
   end
 
   def random_word() do
-    :wl |> Agent.get(&Enum.random/1)
+    @name |> Agent.get(&Enum.random/1)
   end
 
   def word_list(file \\ "../../assets/words.txt") do
